@@ -14,25 +14,25 @@ const Home = () => {
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
 
-    const [inputCount, setInputCount] = useState(0);
-    const [sharedValue, setSharedValue] = useState("");
-    const [generatedRows, setGeneratedRows] = useState([]);
+    const [inputCount, setInputCount] = useState(0); 
+    const [sharedValue, setSharedValue] = useState(""); 
+    const [generatedRows, setGeneratedRows] = useState([]); 
 
-
+   
     useEffect(() => {
         const count = parseInt(inputCount) || 0;
 
-
+       
         if (sharedValue) {
             const newRows = Array.from({ length: count }, () => ({
                 value1: "",
-                value2: sharedValue,
+                value2: sharedValue, 
             }));
             setGeneratedRows(newRows);
         }
     }, [inputCount, sharedValue]);
 
-
+    
     const handleAddRow = () => {
         setGeneratedRows((prevRows) => [...prevRows, { value1: "", value2: "" }]);
     };
@@ -61,28 +61,8 @@ const Home = () => {
                 <Container maxWidth="md">
                     <Box sx={{ flexGrow: 1, backgroundColor: "#717171", p: 5 }}>
                         <Grid container spacing={2}>
-                            {/* İlk input */}
-                            <Grid item xs={2}>
-                                <TextField
-                                    required
-                                    id="outlined-required"
-                                    label="Kredi Tutarı"
-                                    fullWidth={true}
-                                    value={inputCount}
-                                />
-                            </Grid>
-                            {/* İkinci input */}
-                            <Grid item xs={2}>
-                                <TextField
-                                    required
-                                    id="outlined-required"
-                                    label="Diğer Masraflar"
-                                    fullWidth={true}
-                                    value={inputCount}
-                                />
-                            </Grid>
-                            {/* Üçüncü input */}
-                            <Grid item xs={2}>
+                          
+                            <Grid item xs={4}>
                                 <TextField
                                     required
                                     id="outlined-required"
@@ -92,19 +72,19 @@ const Home = () => {
                                     onChange={(e) => setInputCount(e.target.value)}
                                 />
                             </Grid>
-                            {/* Dördüncü input */}
-                            <Grid item xs={2}>
+                            {/* İkinci input */}
+                            <Grid item xs={4}>
                                 <TextField
                                     required
                                     id="outlined-required"
                                     label="Ödeme Tutarı"
                                     fullWidth={true}
-                                    value={inputCount}
+                                    value={sharedValue}
                                     onChange={(e) => setSharedValue(e.target.value)}
                                 />
                             </Grid>
                             {/* Add butonu */}
-                            <Grid item xs={2} display="flex" justifyContent="flex-end">
+                            <Grid item xs={4} display="flex" justifyContent="flex-end">
                                 <Button
                                     variant="outlined"
                                     startIcon={<AddIcon />}
@@ -112,7 +92,7 @@ const Home = () => {
                                     size="small"
                                     onClick={handleAddRow}
                                 >
-                                    Ekle
+                                    ADD
                                 </Button>
                             </Grid>
                         </Grid>
@@ -149,7 +129,7 @@ const Home = () => {
                                                 startIcon={<DeleteIcon />}
                                                 onClick={() => handleDeleteRow(index)}
                                             >
-                                                Sil
+                                                Delete
                                             </Button>
                                         </Grid>
                                     </React.Fragment>
